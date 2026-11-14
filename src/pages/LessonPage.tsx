@@ -9,7 +9,7 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [currentExIndex, setCurrentExIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-  const [completed, setCompleted] = useState(isLessonCompleted(lesson.id));
+  
 
   const handleAnswerCheck = (option: string) => {
     const currentQuestion = lesson.exercises[currentExIndex];
