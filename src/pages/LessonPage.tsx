@@ -1,5 +1,5 @@
 // src/pages/LessonPage.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getFirstLesson } from '../features/lessons/lessonService';
 import { markLessonCompleted } from '../features/lessons/lessonProgress';
 
@@ -10,7 +10,17 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
-  // 👉 Исправленная функция озвучки с жестким поиском немецкого/английского голоса для мобилок
+  // Предзагружаем голоса при открытии страницы, чтобы мобильный браузер их «увидел»
+  useEffect(() => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.getVoices();
+      window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+      };
+    }
+  }, []);
+
+  // 👉 Улучшенная функция озвучки с поиском «живых» голосов (отсеиваем бабушек)
   const speak = (text: string, lang: 'de-DE' | 'en-US' = 'de-DE') => {
     if (!('speechSynthesis' in window)) {
       alert('Твой браузер не поддерживает озвучку текста.');
@@ -20,13 +30,24 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
-    utterance.rate = 0.9;
+    utterance.rate = 0.95; // Чуть естественнее скорость
 
     const voices = window.speechSynthesis.getVoices();
     if (voices.length > 0) {
-      const selectedVoice = voices.find(v => v.lang === lang || v.lang.toLowerCase().includes(lang.split('-')[0].toLowerCase()));
-      if (selectedVoice) {
-        utterance.voice = selectedVoice;
+      const langCode = lang.split('-')[0].toLowerCase();
+      const availableVoices = voices.filter(v => v.lang.toLowerCase().includes(langCode));
+
+      if (availableVoices.length > 0) {
+        // Пытаемся найти нормальный современный голос (Google, Natural, Enhanced, Siri)
+        const bestVoice = availableVoices.find(v => 
+          v.name.toLowerCase().includes('natural') || 
+          v.name.toLowerCase().includes('google') || 
+          v.name.toLowerCase().includes('enhanced') ||
+          v.name.toLowerCase().includes('siri') ||
+          v.name.toLowerCase().includes('premium')
+        ) || availableVoices[0]; // Если премиума нет, берем первый из доступных по языку
+
+        utterance.voice = bestVoice;
       }
     }
 
