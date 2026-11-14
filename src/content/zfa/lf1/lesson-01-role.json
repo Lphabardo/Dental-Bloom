@@ -1,77 +1,95 @@
 {
-  "id": "zfa-lf1-001",
-  "title": "Meine Rolle im Betrieb",
-  "subtitle": "Моя роль в стоматологической практике",
-  "track": "zfa",
-  "estimatedMinutes": 10,
+  "id": "lesson-01-start",
+  "title": "1. Start in der Praxis & Rechte",
+  "subtitle": "Duales System, Arbeitszeit und Jugendarbeitsschutz",
   "learningGoals": [
-    "Понять свою роль как Азуби (Auszubildende) в клинике",
-    "Узнать основные права и обязанности по договору"
+    "Das duale Ausbildungssystem verstehen (Berufsschule & Praxis)",
+    "Grundregeln des Jugendarbeitsschutzgesetzes (JArbSchG) kennen",
+    "Arbeitszeiten, Pausen und Urlaubsanspruch einschätzen"
   ],
   "sections": [
     {
       "id": "sec-1",
-      "heading": "Die Ausbildung zur ZFA",
-      "explanationRu": "Обучение на ZFA в Германии длится 3 года и проходит на основе дуальной системы: в стоматологической практике (Praxis) и профессиональной школе (Berufsschule).",
-      "explanationDe": "Die Ausbildung zur Zahnmedizinischen Fachangestellten dauert drei Jahre und erfolgt im dualen System."
+      "heading": "Das duale System in Deutschland",
+      "explanationRu": "Профессиональное обучение в Германии построено на дуальной системе. Она объединяет два места обучения: стоматологическую клинику (практика) и профессиональную школу Berufsschule (теория). Цель — синхронизировать учебный процесс и реальную работу у кресла[cite: 36].",
+      "explanationDe": "Die Berufsausbildung in Deutschland findet im dualen System statt: an Lernorten wie dem Ausbildungsbetrieb und der Berufsschule, geregelt durch das Berufsbildungsgesetz (BBiG)[cite: 36]."
     },
     {
       "id": "sec-2",
-      "heading": "Der Ausbildungsvertrag",
-      "explanationRu": "Трудовой (учебный) договор регулирует права и обязанности ученика и врача. В нем указаны рабочее время, зарплата и отпуск.",
-      "explanationDe": "Der Ausbildungsvertrag regelt die Rechte und Pflichten von Auszubildenden und Ausbildern."
+      "heading": "Arbeitszeit und Jugendarbeitsschutz",
+      "explanationRu": "Для несовершеннолетних (до 18 лет) действует строгий Закон об охране труда молодежи (JArbSchG). Максимальная рабочая неделя составляет 40 часов, а рабочий день в среднем не должен превышать 8 часов[cite: 2].",
+      "explanationDe": "Das Jugendarbeitsschutzgesetz (JArbSchG) schützt junge Menschen unter 18 Jahren. Die 40-Stunden-Woche ist die Obergrenze, der Arbeitstag sollte maximal 8 Stunden dauern[cite: 2]."
+    },
+    {
+      "id": "sec-3",
+      "heading": "Der Fall: Zu viel Stress in Berlin",
+      "explanationRu": "Подруга Гертруда пишет из Берлина: ее коллега попала в больницу, из-за чего Гертруду заставляют работать 55 часов в неделю, выходить по субботам и дают всего 15 минут на обед. По закону это грубейшие нарушения трудовых прав[cite: 8]!",
+      "explanationDe": "Gertrude schreibt: Meine Kollegin ist im Krankenhaus, jetzt arbeiten wir 55 Stunden die Woche, müssen samstags kommen und haben oft nur eine 15-minütige Mittagspause. Ist das arbeitsrechtlich erlaubt[cite: 8]?"
     }
   ],
   "vocabulary": [
     {
       "id": "v-1",
+      "article": "der / die",
       "term": "Auszubildende",
-      "article": "die",
-      "translationRu": "ученица / стажер (кратко: Azubi)",
-      "simpleDefinitionDe": "Eine Azubi lernt den Beruf.",
-      "englishTerm": "trainee"
+      "translationRu": "Стажер, ученик (Azubi)",
+      "simpleDefinitionDe": "Trainee oder Lernender in einer dualen Ausbildung."
     },
     {
       "id": "v-2",
-      "term": "Ausbildungsvertrag",
-      "article": "der",
-      "translationRu": "договор об обучении",
-      "simpleDefinitionDe": "Der Vertrag für die Ausbildung.",
-      "englishTerm": "training contract"
+      "article": "die",
+      "term": "Arbeitszeit",
+      "translationRu": "Рабочее время",
+      "simpleDefinitionDe": "Die Zeit, in der man in der Praxis arbeitet."
     },
     {
       "id": "v-3",
-      "term": "Praxis",
       "article": "die",
-      "translationRu": "стоматологическая практика / клиника",
-      "simpleDefinitionDe": "Hier arbeiten Zahnärzte und ZFA.",
-      "englishTerm": "dental practice"
+      "term": "Ruhepause",
+      "translationRu": "Перерыв для отдыха",
+      "simpleDefinitionDe": "Vorgeschriebene Erholungspause während des Arbeitstages."
+    },
+    {
+      "id": "v-4",
+      "article": "der",
+      "term": "Urlaub",
+      "translationRu": "Отпуск",
+      "simpleDefinitionDe": "Freie Tage zur Erholung nach dem Bundesurlaubsgesetz."
     }
   ],
   "exercises": [
     {
       "id": "ex-1",
-      "type": "single-choice",
-      "question": "Wie viele Jahre dauert die Ausbildung zur ZFA regulär?",
+      "question": "Was versteht man unter dem 'dualen System' der Ausbildung?",
       "options": [
-        "1 Jahr",
-        "3 Jahre",
-        "5 Jahre"
+        "Das Lernen an zwei Lernorten: Berufsschule und Ausbildungsbetrieb",
+        "Die Arbeit in zwei verschiedenen Zahnarztpraxen gleichzeitig",
+        "Eine Ausbildung, die nur aus Online-Kursen besteht"
       ],
-      "correctAnswer": "3 Jahre",
-      "explanationRu": "Обучение на ZFA в Германии длится 3 года."
+      "correctAnswer": "Das Lernen an zwei Lernorten: Berufsschule und Ausbildungsbetrieb",
+      "explanationRu": "Дуальное обучение означает одновременное прохождение практики в клинике и теории в профессиональной школе (Berufsschule)[cite: 36]."
     },
     {
       "id": "ex-2",
-      "type": "single-choice",
-      "question": "Was regelt der Ausbildungsvertrag?",
+      "question": "Wie viele Stunden beträgt die wöchentliche Obergrenze für Jugendliche nach dem JArbSchG?",
       "options": [
-        "Nur die Urlaubstage",
-        "Rechte und Pflichten während der Ausbildung",
-        "Den Urlaub der Patienten"
+        "Maximal 35 Stunden",
+        "Genau 40 Stunden",
+        "Bis zu 55 Stunden bei Notfällen"
       ],
-      "correctAnswer": "Rechte und Pflichten während der Ausbildung",
-      "explanationRu": "Договор об обучении определяет все ключевые права и обязанности сторон."
+      "correctAnswer": "Genau 40 Stunden",
+      "explanationRu": "Закон строго ограничивает рабочую неделю для несовершеннолетних рамками в 40 часов[cite: 2]."
+    },
+    {
+      "id": "ex-3",
+      "question": "Darf der Chef den bereits genehmigten Urlaub einfach so streichen, wie es bei Gertrude der Fall war?",
+      "options": [
+        "Ja, der Chef hat immer das Recht dazu.",
+        "Nein, Urlaubsansprüche und Festlegungen unterliegen gesetzlichen Regeln (Bundesurlaubsgesetz) und betrieblichen Belangen mit Rücksichtบนs Arbeitnehmer.",
+        "Ja, wenn Notstand in der Praxis herrscht."
+      ],
+      "correctAnswer": "Nein, Urlaubsansprüche und Festlegungen unterliegen gesetzlichen Regeln (Bundesurlaubsgesetz) und betrieblichen Belangen mit Rücksichtบนs Arbeitnehmer.",
+      "explanationRu": "Односторонний произвол работодателя по отмене отпуска ограничен нормами закона и интересами сотрудника[cite: 5, 8]."
     }
   ]
 }
