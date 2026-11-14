@@ -10,17 +10,27 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
-  // 👉 Функция озвучки Text-to-Speech (работает прямо на телефоне)
+  // 👉 Исправленная функция озвучки с жестким поиском немецкого/английского голоса для мобилок
   const speak = (text: string, lang: 'de-DE' | 'en-US' = 'de-DE') => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = lang;
-      utterance.rate = 0.9;
-      window.speechSynthesis.speak(utterance);
-    } else {
+    if (!('speechSynthesis' in window)) {
       alert('Твой браузер не поддерживает озвучку текста.');
+      return;
     }
+
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    utterance.rate = 0.9;
+
+    const voices = window.speechSynthesis.getVoices();
+    if (voices.length > 0) {
+      const selectedVoice = voices.find(v => v.lang === lang || v.lang.toLowerCase().includes(lang.split('-')[0].toLowerCase()));
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
+      }
+    }
+
+    window.speechSynthesis.speak(utterance);
   };
 
   const handleAnswerCheck = (option: string) => {
@@ -123,7 +133,7 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
               <p className="text-sm font-medium text-[#B95783]">{vocab.translationRu}</p>
               <p className="text-xs text-[#817782] italic">🇩🇪 {vocab.simpleDefinitionDe}</p>
 
-              {/* 👉 Новый бонусный блок: Dental English */}
+              {/* 👉 Бонусный блок: Dental English */}
               <div className="mt-2 pt-2 border-t border-[#F0E4E9] flex items-center justify-between bg-[#FFF9F6] p-2.5 rounded-xl">
                 <div className="text-xs">
                   <span className="font-bold text-[#34313A]">🇬🇧 Dental English: </span>
@@ -150,7 +160,7 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
 
           <button
             onClick={() => setStep('exercises')}
-            className="w-full mt-6 bg-[#D985A8] hover:bg-[#B95783] text-white font-medium py.3.5 px-6 rounded-2xl shadow-md transition-all"
+            className="w-full mt-6 bg-[#D985A8] hover:bg-[#B95783] text-white font-medium py-3.5 px-6 rounded-2xl shadow-md transition-all"
           >
             Перейти к тесту →
           </button>
