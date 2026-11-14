@@ -1,36 +1,23 @@
-// src/features/lessons/lessonProgress.ts
+const COMPLETED_KEY = 'dental_bloom_completed_lessons';
 
-export type UserProgress = {
-  completedLessons: string[];
-  vocabularyKnown: string[];
-};
-
-const STORAGE_KEY = 'dental_bloom_progress_v1';
-
-export const getProgress = (): UserProgress => {
+export const getCompletedLessons = (): string[] => {
   try {
-    const data = localStorage.getItem(STORAGE_KEY);
-    if (data) {
-      return JSON.parse(data);
-    }
-  } catch (e) {
-    console.error('Failed to load progress', e);
+    const raw = localStorage.getItem(COMPLETED_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
   }
-  return { completedLessons: [], vocabularyKnown: [] };
 };
 
 export const markLessonCompleted = (lessonId: string) => {
-  const progress = getProgress();
-  if (!progress.completedLessons.includes(lessonId)) {
-    progress.completedLessons.push(lessonId);
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-    } catch (e) {
-      console.error('Failed to save progress', e);
-    }
+  const completed = getCompletedLessons();
+  if (!completed.includes(lessonId)) {
+    const updated = [...completed, lessonId];
+    localStorage.setItem(COMPLETED_KEY, JSON.stringify(updated));
+    window.dispatchEvent(new Event('lessonProgressUpdated'));
   }
 };
 
 export const isLessonCompleted = (lessonId: string): boolean => {
-  return getProgress().completedLessons.includes(lessonId);
+  return getCompletedLessons().includes(lessonId);
 };

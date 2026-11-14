@@ -1,0 +1,105 @@
+{
+  "id": "lesson-02-arbeitszeit",
+  "moduleTag": "ZFA Schule · PuG 10",
+  "duration": "12 min",
+  "title": "2. Arbeitszeitgesetz & Urlaub",
+  "subtitle": "Rechte für Volljährige, Pausenregelungen und Urlaubsanspruch",
+  "learningGoals": [
+    "Unterschied zwischen JArbSchG (unter 18) und ArbZG (ab 18) kennen",
+    "Gesetzliche Ruhepausen und Ruhezeiten zwischen Schichten anwenden",
+    "Urlaubsanspruch, Wartezeit und Krankheit im Urlaub (BUrlG) verstehen"
+  ],
+  "sections": [
+    {
+      "id": "sec-2-1",
+      "heading": "Das Arbeitszeitgesetz (ArbZG) ab 18 Jahren",
+      "explanationRu": "Когда стажеру исполняется 18 лет (как 20-летней Гертруде/Айлин из кейса), начинает действовать общий Закон о рабочем времени (ArbZG). Обычная рабочая смена составляет 8 часов. Ее можно продлить до 10 часов в день, но только если в течение 6 месяцев (или 24 недель) среднее время все равно останется 8 часов.",
+      "explanationDe": "Nach dem Arbeitszeitgesetz (ArbZG) beträgt die werktägliche Arbeitszeit in der Regel 8 Stunden. Sie kann auf bis zu 10 Stunden verlängert werden, wenn innerhalb von 6 Monaten bzw. 24 Wochen im Durchschnitt 8 Stunden nicht überschritten werden."
+    },
+    {
+      "id": "sec-2-2",
+      "heading": "Ruhepausen und Ruhezeit",
+      "explanationRu": "Работать без обеда запрещено. При смене от 6 до 9 часов положено минимум 30 минут перерыва, свыше 9 часов — 45 минут. Первый перерыв должен быть не позднее чем через 6 часов работы, а минимальная длина одного перерыва — 15 минут. Между сменами должно пройти минимум 11 часов отдыха.",
+      "explanationDe": "Bei einer Arbeitszeit von 6 bis 9 Stunden stehen dem Arbeitnehmer mindestens 30 Minuten Ruhepause zu, bei mehr als 9 Stunden mindestens 45 Minuten. Zwischen zwei Arbeitstagen muss eine ununterbrochene Ruhezeit von mindestens 11 Stunden liegen."
+    },
+    {
+      "id": "sec-2-3",
+      "heading": "Bundesurlaubsgesetz (BUrlG) & Krankheit",
+      "explanationRu": "Минимальный отпуск по закону — 24 рабочих дня (4 недели при 6-дневной рабочей неделе). Полное право на отпуск возникает после 6 месяцев работы (Wartezeit). Если сотрудник заболел в отпуске и принес справку от врача (ärztliches Attest), дни болезни не сгорают и не засчитываются как отпуск.",
+      "explanationDe": "Der gesetzliche Mindesturlaub beträgt 24 Werktage (= 4 Wochen) nach einer Wartezeit von 6 Monaten. Durch ärztliches Attest nachgewiesene Krankheitstage werden nicht auf den Jahresurlaub angerechnet."
+    }
+  ],
+  "vocabulary": [
+    {
+      "id": "v-2-1",
+      "article": "die",
+      "term": "Ruhezeit",
+      "translationRu": "Время отдыха между рабочими днями (минимум 11 часов)",
+      "simpleDefinitionDe": "Die ununterbrochene Freizeit zwischen Feierabend und dem nächsten Arbeitsbeginn.",
+      "enTerm": "Rest period",
+      "enAudio": "Rest period"
+    },
+    {
+      "id": "v-2-2",
+      "article": "die",
+      "term": "Wartezeit",
+      "translationRu": "Период ожидания (6 месяцев до полного права на отпуск)",
+      "simpleDefinitionDe": "Zeitraum von 6 Monaten nach Beginn des Arbeitsverhältnisses für den vollen Urlaubsanspruch.",
+      "enTerm": "Waiting period",
+      "enAudio": "Waiting period"
+    },
+    {
+      "id": "v-2-3",
+      "article": "das",
+      "term": "ärztliche Attest",
+      "translationRu": "Врачебная справка / больничный лист",
+      "simpleDefinitionDe": "Offizielle Bescheinigung eines Arztes über die Arbeitsunfähigkeit.",
+      "enTerm": "Medical certificate",
+      "enAudio": "Medical certificate"
+    },
+    {
+      "id": "v-2-4",
+      "article": "der",
+      "term": "Werktag",
+      "translationRu": "Рабочий день по закону (включая субботу)",
+      "simpleDefinitionDe": "Alle Kalendertage, die nicht Sonn- oder gesetzliche Feiertage sind (Montag bis Samstag).",
+      "enTerm": "Working day",
+      "enAudio": "Working day"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex-2-1",
+      "question": "Wie lange muss die Ruhepause bei einer Arbeitszeit von 6 bis 9 Stunden nach dem ArbZG mindestens betragen?",
+      "options": [
+        "15 Minuten",
+        "30 Minuten",
+        "45 Minuten"
+      ],
+      "correctAnswer": "30 Minuten",
+      "explanationRu": "При рабочем дне от 6 до 9 часов закон требует минимум 30 минут перерыва (а более 9 часов — 45 минут)."
+    },
+    {
+      "id": "ex-2-2",
+      "question": "Wie viele Stunden Ruhezeit müssen zwischen zwei Arbeitstagen mindestens liegen?",
+      "options": [
+        "Mindestens 8 Stunden",
+        "Mindestens 11 Stunden",
+        "Mindestens 12 Stunden (wie bei Jugendlichen)"
+      ],
+      "correctAnswer": "Mindestens 11 Stunden",
+      "explanationRu": "Для совершеннолетних минимальный отдых между сменами составляет 11 часов (12 часов действует только для несовершеннолетних по JArbSchG)."
+    },
+    {
+      "id": "ex-2-3",
+      "question": "Was passiert, wenn man während des Urlaubs krank wird und ein ärztliches Attest vorlegt?",
+      "options": [
+        "Die Urlaubstage sind trotzdem verbraucht.",
+        "Die durch Attest nachgewiesenen Krankheitstage werden nicht als Urlaub angerechnet.",
+        "Man bekommt nur die Hälfte der Tage zurück."
+      ],
+      "correctAnswer": "Die durch Attest nachgewiesenen Krankheitstage werden nicht als Urlaub angerechnet.",
+      "explanationRu": "Дни болезни, подтвержденные справкой от врача (ärztliches Attest), не засчитываются в счет отпуска и сохраняются за работником."
+    }
+  ]
+}

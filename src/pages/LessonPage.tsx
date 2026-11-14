@@ -1,14 +1,25 @@
-// src/pages/LessonPage.tsx
 import React, { useState, useEffect } from 'react';
-import { getFirstLesson } from '../features/lessons/lessonService';
+import { getLessonById } from '../features/lessons/lessonService';
 import { markLessonCompleted } from '../features/lessons/lessonProgress';
 
-export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
-  const lesson = getFirstLesson();
+interface LessonPageProps {
+  lessonId: string;
+  onBack: () => void;
+}
+
+export const LessonPage: React.FC<LessonPageProps> = ({ lessonId, onBack }) => {
+  const lesson = getLessonById(lessonId);
   const [step, setStep] = useState<'intro' | 'vocabulary' | 'exercises' | 'done'>('intro');
   const [currentExIndex, setCurrentExIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    setStep('intro');
+    setCurrentExIndex(0);
+    setSelectedAnswer(null);
+    setIsCorrect(null);
+  }, [lessonId]);
 
   useEffect(() => {
     if ('speechSynthesis' in window) {
@@ -54,8 +65,7 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const handleAnswerCheck = (option: string) => {
     const currentQuestion = lesson.exercises[currentExIndex];
     setSelectedAnswer(option);
-    const correct = option === currentQuestion.correctAnswer;
-    setIsCorrect(correct);
+    setIsCorrect(option === currentQuestion.correctAnswer);
   };
 
   const handleNextExercise = () => {
@@ -70,8 +80,7 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4 bg-[#FFF9F6] min-h-screen pb-20">
-      {/* Шапка урока */}
+    <div className="max-w-md mx-auto p-4 bg-[#FFF9F6] min-h-screen pb-24">
       <div className="flex items-center justify-between mb-6">
         <button 
           onClick={onBack}
@@ -80,14 +89,13 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
           ← Назад
         </button>
         <span className="text-xs bg-[#FBEAF1] text-[#B95783] px-3 py-1 rounded-full font-semibold">
-          ZFA Schule · LF 1 & PuG
+          {(lesson as any).moduleTag || 'ZFA Schule · LF 1 & PuG'}
         </span>
       </div>
 
       <h1 className="text-2xl font-bold text-[#34313A] mb-1">{lesson.title}</h1>
       <p className="text-sm text-[#817782] mb-6">{lesson.subtitle}</p>
 
-      {/* Этап 1: Теория (Intro) */}
       {step === 'intro' && (
         <div className="space-y-4">
           <div className="bg-white p-5 rounded-2xl shadow-sm border border-[#F0E4E9]">
@@ -125,19 +133,19 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
         </div>
       )}
 
-      {/* Этап 2: Словарь (Vocabulary) + Dental English */}
       {step === 'vocabulary' && (
         <div className="space-y-4">
           <h2 className="text-lg font-semibold text-[#34313A]">Важные слова (Wortschatz & English)</h2>
           
-          {lesson.vocabulary.map((vocab) => {
-            // Подбираем английский перевод в зависимости от немецкого термина
-            let enTerm = 'Trainee';
-            let enAudio = 'Dental Assistant';
-            if (vocab.term === 'Arbeitszeit') { enTerm = 'Working hours'; enAudio = 'Working hours'; }
-            else if (vocab.term === 'Ruhepause') { enTerm = 'Rest break'; enAudio = 'Break'; }
-            else if (vocab.term === 'Urlaub') { enTerm = 'Vacation / Leave'; enAudio = 'Vacation'; }
-            else if (vocab.term === 'Auszubildende') { enTerm = 'Trainee / Dental Assistant'; enAudio = 'Dental Assistant'; }
+          {lesson.vocabulary.map((vocab: any) => {
+            let enTerm = vocab.enTerm || 'Dental Term';
+            let enAudio = vocab.enAudio || enTerm;
+            if (!vocab.enTerm) {
+              if (vocab.term === 'Arbeitszeit') { enTerm = 'Working hours'; enAudio = 'Working hours'; }
+              else if (vocab.term === 'Ruhepause') { enTerm = 'Rest break'; enAudio = 'Break'; }
+              else if (vocab.term === 'Urlaub') { enTerm = 'Vacation / Leave'; enAudio = 'Vacation'; }
+              else if (vocab.term === 'Auszubildende') { enTerm = 'Trainee / Dental Assistant'; enAudio = 'Dental Assistant'; }
+            }
 
             return (
               <div key={vocab.id} className="bg-white p-4 rounded-2xl shadow-sm border border-[#F0E4E9] space-y-2">
@@ -149,7 +157,6 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                   <button
                     onClick={() => speak(`${vocab.article || ''} ${vocab.term}`, 'de-DE')}
                     className="text-sm bg-[#FBEAF1] text-[#B95783] px-2.5 py-1 rounded-xl hover:bg-[#F0E4E9] transition-all"
-                    title="Прослушать по-немецки"
                   >
                     🔊 DE
                   </button>
@@ -158,7 +165,6 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                 <p className="text-sm font-medium text-[#B95783]">{vocab.translationRu}</p>
                 <p className="text-xs text-[#817782] italic">🇩🇪 {vocab.simpleDefinitionDe}</p>
 
-                {/* Бонусный блок: Dental English */}
                 <div className="mt-2 pt-2 border-t border-[#F0E4E9] flex items-center justify-between bg-[#FFF9F6] p-2.5 rounded-xl">
                   <div className="text-xs">
                     <span className="font-bold text-[#34313A]">🇬🇧 Dental English: </span>
@@ -167,7 +173,6 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                   <button
                     onClick={() => speak(enAudio, 'en-US')}
                     className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-lg hover:bg-gray-200 transition-all"
-                    title="Прослушать по-английски"
                   >
                     🔊 EN
                   </button>
@@ -185,7 +190,6 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
         </div>
       )}
 
-      {/* Этап 3: Тест (Exercises) */}
       {step === 'exercises' && (
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-[#F0E4E9] space-y-4">
           <div className="flex justify-between text-xs text-[#817782] font-medium">
@@ -241,13 +245,12 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
         </div>
       )}
 
-      {/* Этап 4: Завершение (Done) */}
       {step === 'done' && (
         <div className="bg-white p-8 rounded-2xl shadow-sm border border-[#F0E4E9] text-center space-y-4">
           <div className="text-4xl">🌸</div>
           <h2 className="text-xl font-bold text-[#34313A]">Урок успешно пройден!</h2>
           <p className="text-sm text-[#817782]">
-            Вы отлично потрудились и закрепили материал. Прогресс сохранен в памяти устройства.
+            Вы отлично потрудились и закрепили материал. Прогресс сохранен!
           </p>
           <button
             onClick={onBack}
