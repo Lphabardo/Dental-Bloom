@@ -1,7 +1,7 @@
 // src/pages/LessonPage.tsx
 import React, { useState } from 'react';
 import { getFirstLesson } from '../features/lessons/lessonService';
-import { markLessonCompleted, isLessonCompleted } from '../features/lessons/lessonProgress';
+import { markLessonCompleted } from '../features/lessons/lessonProgress';
 
 export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const lesson = getFirstLesson();
@@ -9,7 +9,6 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [currentExIndex, setCurrentExIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-  
 
   const handleAnswerCheck = (option: string) => {
     const currentQuestion = lesson.exercises[currentExIndex];
@@ -25,7 +24,6 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       setCurrentExIndex(currentExIndex + 1);
     } else {
       markLessonCompleted(lesson.id);
-      setCompleted(true);
       setStep('done');
     }
   };
