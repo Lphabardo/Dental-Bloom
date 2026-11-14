@@ -10,6 +10,19 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
+  // 👉 Функция озвучки Text-to-Speech (работает прямо на телефоне)
+  const speak = (text: string, lang: 'de-DE' | 'en-US' = 'de-DE') => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = lang;
+      utterance.rate = 0.9;
+      window.speechSynthesis.speak(utterance);
+    } else {
+      alert('Твой браузер не поддерживает озвучку текста.');
+    }
+  };
+
   const handleAnswerCheck = (option: string) => {
     const currentQuestion = lesson.exercises[currentExIndex];
     setSelectedAnswer(option);
@@ -60,7 +73,17 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
 
           {lesson.sections.map((sec) => (
             <div key={sec.id} className="bg-white p-5 rounded-2xl shadow-sm border border-[#F0E4E9] space-y-3">
-              <h3 className="font-semibold text-[#34313A] text-lg">{sec.heading}</h3>
+              <div className="flex items-center justify-between">
+                <h3 className="font-semibold text-[#34313A] text-lg">{sec.heading}</h3>
+                {/* Кнопка озвучки немецкого текста секции */}
+                <button
+                  onClick={() => speak(sec.explanationDe, 'de-DE')}
+                  className="text-sm bg-[#FBEAF1] text-[#B95783] p-2 rounded-xl hover:bg-[#F0E4E9] transition-all"
+                  title="Прослушать на немецком"
+                >
+                  🔊
+                </button>
+              </div>
               <p className="text-sm text-[#34313A] leading-relaxed">🇷🇺 {sec.explanationRu}</p>
               <p className="text-sm text-[#B95783] italic bg-[#FBEAF1] p-3 rounded-xl">🇩🇪 {sec.explanationDe}</p>
             </div>
@@ -75,24 +98,59 @@ export const LessonPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
         </div>
       )}
 
-      {/* Этап 2: Словарь (Vocabulary) */}
+      {/* Этап 2: Словарь (Vocabulary) + Dental English */}
       {step === 'vocabulary' && (
         <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-[#34313A]">Важные слова (Wortschatz)</h2>
+          <h2 className="text-lg font-semibold text-[#34313A]">Важные слова (Wortschatz & English)</h2>
+          
           {lesson.vocabulary.map((vocab) => (
-            <div key={vocab.id} className="bg-white p-4 rounded-2xl shadow-sm border border-[#F0E4E9] space-y-1">
-              <div className="flex items-baseline gap-2">
-                <span className="text-xs text-[#817782] font-semibold">{vocab.article}</span>
-                <span className="text-lg font-bold text-[#34313A]">{vocab.term}</span>
+            <div key={vocab.id} className="bg-white p-4 rounded-2xl shadow-sm border border-[#F0E4E9] space-y-2">
+              <div className="flex items-center justify-between">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-xs text-[#817782] font-semibold">{vocab.article}</span>
+                  <span className="text-lg font-bold text-[#34313A]">{vocab.term}</span>
+                </div>
+                {/* Кнопка озвучки немецкого термина */}
+                <button
+                  onClick={() => speak(`${vocab.article || ''} ${vocab.term}`, 'de-DE')}
+                  className="text-sm bg-[#FBEAF1] text-[#B95783] px-2.5 py-1 rounded-xl hover:bg-[#F0E4E9] transition-all"
+                  title="Прослушать по-немецки"
+                >
+                  🔊 DE
+                </button>
               </div>
+
               <p className="text-sm font-medium text-[#B95783]">{vocab.translationRu}</p>
               <p className="text-xs text-[#817782] italic">🇩🇪 {vocab.simpleDefinitionDe}</p>
+
+              {/* 👉 Новый бонусный блок: Dental English */}
+              <div className="mt-2 pt-2 border-t border-[#F0E4E9] flex items-center justify-between bg-[#FFF9F6] p-2.5 rounded-xl">
+                <div className="text-xs">
+                  <span className="font-bold text-[#34313A]">🇬🇧 Dental English: </span>
+                  <span className="text-[#817782] italic">
+                    {vocab.term === 'Auszubildende' ? 'Trainee / Dental Assistant' : 
+                     vocab.term === 'Behandlungszimmer' ? 'Treatment room' : 'Dental practice'}
+                  </span>
+                </div>
+                {/* Кнопка озвучки английского термина */}
+                <button
+                  onClick={() => speak(
+                    vocab.term === 'Auszubildende' ? 'Dental Assistant' : 
+                    vocab.term === 'Behandlungszimmer' ? 'Treatment room' : 'Dental practice', 
+                    'en-US'
+                  )}
+                  className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-lg hover:bg-gray-200 transition-all"
+                  title="Прослушать по-английски"
+                >
+                  🔊 EN
+                </button>
+              </div>
             </div>
           ))}
 
           <button
             onClick={() => setStep('exercises')}
-            className="w-full mt-6 bg-[#D985A8] hover:bg-[#B95783] text-white font-medium py-3.5 px-6 rounded-2xl shadow-md transition-all"
+            className="w-full mt-6 bg-[#D985A8] hover:bg-[#B95783] text-white font-medium py.3.5 px-6 rounded-2xl shadow-md transition-all"
           >
             Перейти к тесту →
           </button>
