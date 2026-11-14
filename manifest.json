@@ -1,7 +1,7 @@
 {
   "name": "Dental Bloom",
   "short_name": "Dental Bloom",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#008080"
