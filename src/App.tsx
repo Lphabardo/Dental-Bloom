@@ -6,6 +6,7 @@ import { LearningPage } from './pages/LearningPage';
 import { ReviewPage } from './pages/ReviewPage';
 import { ProgressPage } from './pages/ProgressPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { LessonPage } from './pages/LessonPage'; // Импортируем наш настоящий урок
 
 export function App() {
   const [activeTab, setActiveTab] = useState<TabType>('home');
@@ -15,7 +16,7 @@ export function App() {
   // Заголовок в зависимости от текущей вкладки или открытого экрана
   const getTitle = () => {
     if (isSettingsOpen) return 'Настройки';
-    if (isLessonActive) return 'Урок';
+    if (isLessonActive) return 'Урок: LF 1';
     switch (activeTab) {
       case 'home': return 'Главная';
       case 'learning': return 'Учеба';
@@ -34,16 +35,8 @@ export function App() {
           {isSettingsOpen ? (
             <SettingsPage onBack={() => setIsSettingsOpen(false)} />
           ) : isLessonActive ? (
-            <div className="text-center py-12 space-y-4">
-              <h2 className="text-xl font-bold text-bloom-text">Экран урока</h2>
-              <p className="text-sm text-bloom-muted">Здесь скоро появится контент урока по LF 4.</p>
-              <button 
-                onClick={() => setIsLessonActive(false)}
-                className="px-4 py-2 bg-bloom-dark text-white rounded-xl text-sm font-medium"
-              >
-                Завершить урок
-              </button>
-            </div>
+            // Подключаем настоящий компонент урока с кнопкой возврата
+            <LessonPage onBack={() => setIsLessonActive(false)} />
           ) : (
             <>
               {activeTab === 'home' && (
@@ -52,7 +45,9 @@ export function App() {
                   onOpenSettings={() => setIsSettingsOpen(true)} 
                 />
               )}
-              {activeTab === 'learning' && <LearningPage />}
+              {activeTab === 'learning' && (
+                <LearningPage onSelectLesson={() => setIsLessonActive(true)} />
+              )}
               {activeTab === 'review' && <ReviewPage />}
               {activeTab === 'progress' && <ProgressPage />}
             </>

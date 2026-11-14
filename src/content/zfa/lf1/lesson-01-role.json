@@ -1,0 +1,77 @@
+{
+  "id": "zfa-lf1-001",
+  "title": "Meine Rolle im Betrieb",
+  "subtitle": "Моя роль в стоматологической практике",
+  "track": "zfa",
+  "estimatedMinutes": 10,
+  "learningGoals": [
+    "Понять свою роль как Азуби (Auszubildende) в клинике",
+    "Узнать основные права и обязанности по договору"
+  ],
+  "sections": [
+    {
+      "id": "sec-1",
+      "heading": "Die Ausbildung zur ZFA",
+      "explanationRu": "Обучение на ZFA в Германии длится 3 года и проходит на основе дуальной системы: в стоматологической практике (Praxis) и профессиональной школе (Berufsschule).",
+      "explanationDe": "Die Ausbildung zur Zahnmedizinischen Fachangestellten dauert drei Jahre und erfolgt im dualen System."
+    },
+    {
+      "id": "sec-2",
+      "heading": "Der Ausbildungsvertrag",
+      "explanationRu": "Трудовой (учебный) договор регулирует права и обязанности ученика и врача. В нем указаны рабочее время, зарплата и отпуск.",
+      "explanationDe": "Der Ausbildungsvertrag regelt die Rechte und Pflichten von Auszubildenden und Ausbildern."
+    }
+  ],
+  "vocabulary": [
+    {
+      "id": "v-1",
+      "term": "Auszubildende",
+      "article": "die",
+      "translationRu": "ученица / стажер (кратко: Azubi)",
+      "simpleDefinitionDe": "Eine Azubi lernt den Beruf.",
+      "englishTerm": "trainee"
+    },
+    {
+      "id": "v-2",
+      "term": "Ausbildungsvertrag",
+      "article": "der",
+      "translationRu": "договор об обучении",
+      "simpleDefinitionDe": "Der Vertrag für die Ausbildung.",
+      "englishTerm": "training contract"
+    },
+    {
+      "id": "v-3",
+      "term": "Praxis",
+      "article": "die",
+      "translationRu": "стоматологическая практика / клиника",
+      "simpleDefinitionDe": "Hier arbeiten Zahnärzte und ZFA.",
+      "englishTerm": "dental practice"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex-1",
+      "type": "single-choice",
+      "question": "Wie viele Jahre dauert die Ausbildung zur ZFA regulär?",
+      "options": [
+        "1 Jahr",
+        "3 Jahre",
+        "5 Jahre"
+      ],
+      "correctAnswer": "3 Jahre",
+      "explanationRu": "Обучение на ZFA в Германии длится 3 года."
+    },
+    {
+      "id": "ex-2",
+      "type": "single-choice",
+      "question": "Was regelt der Ausbildungsvertrag?",
+      "options": [
+        "Nur die Urlaubstage",
+        "Rechte und Pflichten während der Ausbildung",
+        "Den Urlaub der Patienten"
+      ],
+      "correctAnswer": "Rechte und Pflichten während der Ausbildung",
+      "explanationRu": "Договор об обучении определяет все ключевые права и обязанности сторон."
+    }
+  ]
+}
