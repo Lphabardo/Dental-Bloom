@@ -71,7 +71,8 @@ export function App() {
             <>
               {activeTab === 'home' && (
                 <HomePage 
-                  onStartLesson={() => setActiveLessonId(nextLesson.id)} 
+                lesson={nextLesson}
+                onStartLesson={() => setActiveLessonId(nextLesson.id)} 
                   onOpenSettings={() => setIsSettingsOpen(true)} 
                 />
               )}

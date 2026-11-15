@@ -2,17 +2,23 @@ import React from 'react';
 import { ArrowRight, BatteryMedium } from 'lucide-react';
 
 interface HomePageProps {
+  lesson: {
+    title: string;
+    subtitle: string;
+    moduleTag: string;
+    duration: string;
+  };
   onStartLesson: () => void;
   onOpenSettings: () => void;
 }
 
-export const HomePage: React.FC<HomePageProps> = ({ onStartLesson, onOpenSettings }) => {
+export const HomePage: React.FC<HomePageProps> = ({ lesson, onStartLesson, onOpenSettings }) => {
   return (
     <div className="space-y-4 pb-24">
       {/* Приветствие */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-bloom-text">Good morning! ✨</h1>
+          <h1 className="text-2xl font-bold text-bloom-text">Hello! ✨</h1>
           <p className="text-sm text-bloom-muted">Little steps. Bright future.</p>
         </div>
         <button 
@@ -27,17 +33,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onStartLesson, onOpenSetting
       <div className="bg-gradient-to-br from-bloom-light to-white p-5 rounded-3xl border border-bloom-border shadow-sm space-y-4">
         <div className="flex items-center justify-between">
           <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-bloom-primary text-white">
-            ZFA Schule · LF 4
+            {lesson.moduleTag}
           </span>
           <span className="text-xs text-bloom-muted font-medium flex items-center gap-1">
-            ⏱️ 10 min
+            ⏱️ {lesson.duration}
           </span>
         </div>
 
         <div>
-          <h2 className="text-lg font-bold text-bloom-text">Was ist Karies?</h2>
+          <h2 className="text-lg font-bold text-bloom-text">{lesson.title}</h2>
           <p className="text-sm text-bloom-muted mt-1">
-            Что такое кариес? Разбираем основы повреждения твердых тканей зуба.
+            {lesson.subtitle}
           </p>
         </div>
 
