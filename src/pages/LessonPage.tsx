@@ -30,6 +30,27 @@ export const LessonPage: React.FC<LessonPageProps> = ({ lessonId, onBack }) => {
     }
   }, []);
 
+  const pickVoice = (lang: string) => {
+  const voices = window.speechSynthesis.getVoices();
+  const code = lang.split('-')[0].toLowerCase();
+  const norm = (l: string) => l.replace('_', '-').toLowerCase();
+  const list = voices.filter((v) => norm(v.lang).startsWith(code));
+
+  const score = (v: SpeechSynthesisVoice) => {
+    const n = v.name.toLowerCase();
+    let s = 0;
+    if (n.includes('premium')) s += 3;
+    if (n.includes('enhanced') || n.includes('улучшен')) s += 3;
+    if (n.includes('natural')) s += 3;
+    if (n.includes('google')) s += 2;
+    if (!v.localService) s += 1;
+    if (norm(v.lang) === lang.toLowerCase()) s += 1;
+    return s;
+  };
+
+  return list.sort((a, b) => score(b) - score(a))[0];
+};
+
   const speak = (text: string, lang: 'de-DE' | 'en-US' = 'de-DE') => {
     if (!('speechSynthesis' in window)) {
       alert('Твой браузер не поддерживает озвучку текста.');
@@ -41,25 +62,11 @@ export const LessonPage: React.FC<LessonPageProps> = ({ lessonId, onBack }) => {
     utterance.lang = lang;
     utterance.rate = 0.95;
 
-    const voices = window.speechSynthesis.getVoices();
-    if (voices.length > 0) {
-      const langCode = lang.split('-')[0].toLowerCase();
-      const availableVoices = voices.filter(v => v.lang.toLowerCase().includes(langCode));
-
-      if (availableVoices.length > 0) {
-        const bestVoice = availableVoices.find(v => 
-          v.name.toLowerCase().includes('natural') || 
-          v.name.toLowerCase().includes('google') || 
-          v.name.toLowerCase().includes('enhanced') ||
-          v.name.toLowerCase().includes('siri') ||
-          v.name.toLowerCase().includes('premium')
-        ) || availableVoices[0];
-
-        utterance.voice = bestVoice;
-      }
-    }
+    const voice = pickVoice(lang);
+if (voice) utterance.voice = voice;
 
     window.speechSynthesis.speak(utterance);
+    alert('Голос: ' + (voice ? voice.name : 'не найден'));
   };
 
   const handleAnswerCheck = (option: string) => {
