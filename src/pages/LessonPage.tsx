@@ -56,29 +56,31 @@ export const LessonPage: React.FC<LessonPageProps> = ({ lessonId, onBack }) => {
     return list.sort((a, b) => score(b) - score(a))[0];
   };
 
-  const speak = (text: string, lang: 'de-DE' | 'en-US' = 'de-DE') => {
+    const speak = (text: string, lang: 'de-DE' | 'en-US' = 'de-DE') => {
     if (!('speechSynthesis' in window)) {
       alert('Твой браузер не поддерживает озвучку текста.');
       return;
     }
 
-    window.speechSynthesis.cancel();
+    const synth = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
     utterance.rate = 0.95;
 
     const voice = pickVoice(lang);
-if (voice) utterance.voice = voice;
+    if (voice) utterance.voice = voice;
 
-    window.speechSynthesis.speak(utterance);
-    alert(
-  'Выбран: ' + (voice ? voice.name : 'нет') +
-  '\nВсе: ' +
-  window.speechSynthesis.getVoices()
-    .filter((v) => v.lang.toLowerCase().startsWith(lang.slice(0, 2)))
-    .map((v) => v.name)
-    .join(', ')
-);
+    const run = () => {
+      synth.resume();
+      synth.speak(utterance);
+    };
+
+    if (synth.speaking || synth.pending) {
+      synth.cancel();
+      setTimeout(run, 100);
+    } else {
+      run();
+    }
   };
 
   const handleAnswerCheck = (option: string) => {
