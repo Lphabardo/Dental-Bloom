@@ -9,10 +9,11 @@ interface HomePageProps {
     duration: string;
   };
   onStartLesson: () => void;
+  onStartShort: () => void;
   onOpenSettings: () => void;
 }
 
-export const HomePage: React.FC<HomePageProps> = ({ lesson, onStartLesson, onOpenSettings }) => {
+export const HomePage: React.FC<HomePageProps> = ({ lesson, onStartLesson, onStartShort, onOpenSettings }) => {
   return (
     <div className="space-y-4 pb-24">
       {/* Приветствие */}
@@ -68,7 +69,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lesson, onStartLesson, onOpe
           </div>
         </div>
         <button 
-          onClick={onStartLesson}
+          onClick={onStartShort}
           className="px-3 py-1.5 bg-bloom-light text-bloom-dark text-xs font-semibold rounded-xl hover:bg-bloom-primary hover:text-white transition"
         >
           Старт

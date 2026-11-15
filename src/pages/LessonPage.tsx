@@ -3,23 +3,24 @@ import { getLessonById } from '../features/lessons/lessonService';
 import { markLessonCompleted } from '../features/lessons/lessonProgress';
 
 interface LessonPageProps {
+    startStep?: 'intro' | 'vocabulary';
   lessonId: string;
   onBack: () => void;
 }
 
-export const LessonPage: React.FC<LessonPageProps> = ({ lessonId, onBack }) => {
+export const LessonPage: React.FC<LessonPageProps> = ({ lessonId, onBack, startStep = 'intro' }) => {
   const lesson = getLessonById(lessonId);
-  const [step, setStep] = useState<'intro' | 'vocabulary' | 'exercises' | 'done'>('intro');
+    const [step, setStep] = useState<'intro' | 'vocabulary' | 'exercises' | 'done'>(startStep);
   const [currentExIndex, setCurrentExIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
   useEffect(() => {
-    setStep('intro');
+    setStep(startStep);
     setCurrentExIndex(0);
     setSelectedAnswer(null);
     setIsCorrect(null);
-  }, [lessonId]);
+  }, [lessonId, startStep]);
 
   useEffect(() => {
     if ('speechSynthesis' in window) {

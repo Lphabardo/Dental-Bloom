@@ -16,8 +16,9 @@ export function App() {
   
   // Храним ID открытого урока (null, если никакой урок не открыт)
   const [activeLessonId, setActiveLessonId] = useState<string | null>(null);
+  const [startStep, setStartStep] = useState<'intro' | 'vocabulary'>('intro');
   
-  // Список пройденных уроков для обновления UI
+  // Список пройденных уроков для обновления U 
   const [completedIds, setCompletedIds] = useState<string[]>(getCompletedLessons());
   const lessons = getAllLessons();
 
@@ -61,7 +62,7 @@ export function App() {
           ) : activeLessonId ? (
             // Открываем конкретный урок по его ID
             <LessonPage 
-              lessonId={activeLessonId} 
+              lessonId={activeLessonId} startStep={startStep}
               onBack={() => {
                 setCompletedIds(getCompletedLessons());
                 setActiveLessonId(null);
@@ -72,12 +73,13 @@ export function App() {
               {activeTab === 'home' && (
                 <HomePage 
                 lesson={nextLesson}
-                onStartLesson={() => setActiveLessonId(nextLesson.id)} 
-                  onOpenSettings={() => setIsSettingsOpen(true)} 
+                onStartLesson={() => { setStartStep('intro'); setActiveLessonId(nextLesson.id); }}
+                onStartShort={() => { setStartStep('vocabulary'); setActiveLessonId(nextLesson.id); }}
+                onOpenSettings={() => setIsSettingsOpen(true)} 
                 />
               )}
               {activeTab === 'learning' && (
-                <LearningPage onSelectLesson={(lessonId) => setActiveLessonId(lessonId)} />
+                 <LearningPage onSelectLesson={(lessonId) => { setStartStep('intro'); setActiveLessonId(lessonId); }} />
               )}
               {activeTab === 'review' && <ReviewPage />}
               {activeTab === 'progress' && <ProgressPage />}
