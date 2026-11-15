@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getLessonById } from '../features/lessons/lessonService';
-import { markLessonCompleted } from '../features/lessons/lessonProgress';
+import { markLessonCompleted, recordActivity } from '../features/lessons/lessonProgress';
 
 interface LessonPageProps {
     startStep?: 'intro' | 'vocabulary';
@@ -96,6 +96,7 @@ export const LessonPage: React.FC<LessonPageProps> = ({ lessonId, onBack, startS
     if (currentExIndex < lesson.exercises.length - 1) {
       setCurrentExIndex(currentExIndex + 1);
     } else {
+            recordActivity();
       markLessonCompleted(lesson.id);
       setStep('done');
     }

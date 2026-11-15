@@ -1,13 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { CheckCircle2, Flame } from 'lucide-react';
 import { getAllLessons } from '../features/lessons/lessonService';
-import { getCompletedLessons } from '../features/lessons/lessonProgress';
+import { getCompletedLessons, getStreak } from '../features/lessons/lessonProgress';
+
+const daysWord = (n: number) => {
+  const last = n % 10;
+  const lastTwo = n % 100;
+  if (lastTwo >= 11 && lastTwo <= 14) return 'дней';
+  if (last === 1) return 'день';
+  if (last >= 2 && last <= 4) return 'дня';
+  return 'дней';
+};
 
 export const ProgressPage: React.FC = () => {
   const [completed, setCompleted] = useState<string[]>(getCompletedLessons());
+  const [streak, setStreak] = useState<number>(getStreak());
 
   useEffect(() => {
-    const update = () => setCompleted(getCompletedLessons());
+    const update = () => {
+      setCompleted(getCompletedLessons());
+      setStreak(getStreak());
+    };
     window.addEventListener('lessonProgressUpdated', update);
     return () => window.removeEventListener('lessonProgressUpdated', update);
   }, []);
@@ -35,7 +48,9 @@ export const ProgressPage: React.FC = () => {
             <Flame size={18} />
             <span className="text-xs font-semibold">Дней подряд</span>
           </div>
-          <span className="text-2xl font-bold text-bloom-text">1 день</span>
+          <span className="text-2xl font-bold text-bloom-text">
+            {streak} {daysWord(streak)}
+          </span>
         </div>
       </div>
     </div>
