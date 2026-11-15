@@ -76,7 +76,7 @@ export function App() {
                 />
               )}
               {activeTab === 'learning' && (
-                <LearningPage onSelectLesson={(lessonId?: string) => setActiveLessonId(lessonId || lessons[0].id)} />
+                <LearningPage onSelectLesson={(lessonId) => setActiveLessonId(lessonId)} />
               )}
               {activeTab === 'review' && <ReviewPage />}
               {activeTab === 'progress' && <ProgressPage />}
