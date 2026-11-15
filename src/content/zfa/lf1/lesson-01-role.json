@@ -1,5 +1,7 @@
 {
   "id": "lesson-01-start",
+    "moduleTag": "ZFA Schule · LF 1",
+  "duration": "10 min",
   "title": "1. Start in der Praxis & Rechte",
   "subtitle": "Duales System, Arbeitszeit und Jugendarbeitsschutz",
   "learningGoals": [
@@ -17,44 +19,52 @@
     {
       "id": "sec-2",
       "heading": "Arbeitszeit und Jugendarbeitsschutz",
-      "explanationRu": "Для несовершеннолетних (до 18 лет) действует строгий Закон об охране труда молодежи (JArbSchG). Максимальная рабочая неделя составляет 40 часов, а рабочий день в среднем не должен превышать 8 часов[: 2].",
-      "explanationDe": "Das Jugendarbeitsschutzgesetz (JArbSchG) schützt junge Menschen unter 18 Jahren. Die 40-Stunden-Woche ist die Obergrenze, der Arbeitstag sollte maximal 8 Stunden dauern[: 2]."
+      "explanationRu": "Для несовершеннолетних (до 18 лет) действует строгий Закон об охране труда молодежи (JArbSchG). Максимальная рабочая неделя составляет 40 часов, а рабочий день в среднем не должен превышать 8 часов.",
+      "explanationDe": "Das Jugendarbeitsschutzgesetz (JArbSchG) schützt junge Menschen unter 18 Jahren. Die 40-Stunden-Woche ist die Obergrenze, der Arbeitstag sollte maximal 8 Stunden dauern."
     },
     {
       "id": "sec-3",
       "heading": "Der Fall: Zu viel Stress in Berlin",
-      "explanationRu": "Подруга Гертруда пишет из Берлина: ее коллега попала в больницу, из-за чего Гертруду заставляют работать 55 часов в неделю, выходить по субботам и дают всего 15 минут на обед. По закону это грубейшие нарушения трудовых прав[: 8]!",
-      "explanationDe": "Gertrude schreibt: Meine Kollegin ist im Krankenhaus, jetzt arbeiten wir 55 Stunden die Woche, müssen samstags kommen und haben oft nur eine 15-minütige Mittagspause. Ist das arbeitsrechtlich erlaubt[: 8]?"
+      "explanationRu": "Подруга Гертруда пишет из Берлина: ее коллега попала в больницу, из-за чего Гертруду заставляют работать 55 часов в неделю, выходить по субботам и дают всего 15 минут на обед. По закону это грубейшие нарушения трудовых прав!",
+      "explanationDe": "Gertrude schreibt: Meine Kollegin ist im Krankenhaus, jetzt arbeiten wir 55 Stunden die Woche, müssen samstags kommen und haben oft nur eine 15-minütige Mittagspause. Ist das arbeitsrechtlich erlaubt?"
     }
   ],
-  "vocabulary": [
+    "vocabulary": [
     {
       "id": "v-1",
       "article": "der / die",
       "term": "Auszubildende",
       "translationRu": "Стажер, ученик (Azubi)",
-      "simpleDefinitionDe": "Trainee oder Lernender in einer dualen Ausbildung."
+      "simpleDefinitionDe": "Trainee oder Lernender in einer dualen Ausbildung.",
+      "enTerm": "Trainee / Dental Assistant",
+      "enAudio": "Dental Assistant"
     },
     {
       "id": "v-2",
       "article": "die",
       "term": "Arbeitszeit",
       "translationRu": "Рабочее время",
-      "simpleDefinitionDe": "Die Zeit, in der man in der Praxis arbeitet."
+      "simpleDefinitionDe": "Die Zeit, in der man in der Praxis arbeitet.",
+      "enTerm": "Working hours",
+      "enAudio": "Working hours"
     },
     {
       "id": "v-3",
       "article": "die",
       "term": "Ruhepause",
       "translationRu": "Перерыв для отдыха",
-      "simpleDefinitionDe": "Vorgeschriebene Erholungspause während des Arbeitstages."
+      "simpleDefinitionDe": "Vorgeschriebene Erholungspause während des Arbeitstages.",
+      "enTerm": "Rest break",
+      "enAudio": "Break"
     },
     {
       "id": "v-4",
       "article": "der",
       "term": "Urlaub",
       "translationRu": "Отпуск",
-      "simpleDefinitionDe": "Freie Tage zur Erholung nach dem Bundesurlaubsgesetz."
+      "simpleDefinitionDe": "Freie Tage zur Erholung nach dem Bundesurlaubsgesetz.",
+      "enTerm": "Vacation / Leave",
+      "enAudio": "Vacation"
     }
   ],
   "exercises": [
@@ -78,18 +88,18 @@
         "Bis zu 55 Stunden bei Notfällen"
       ],
       "correctAnswer": "Maximal 40 Stunden",
-      "explanationRu": "Закон строго ограничивает рабочую неделю для несовершеннолетних рамками в 40 часов[: 2]."
+      "explanationRu": "Закон строго ограничивает рабочую неделю для несовершеннолетних рамками в 40 часов."
     },
     {
       "id": "ex-3",
       "question": "Darf der Chef den bereits genehmigten Urlaub einfach so streichen, wie es bei Gertrude der Fall war?",
       "options": [
         "Ja, der Chef hat immer das Recht dazu.",
-        "Nein, Urlaubsansprüche und Festlegungen unterliegen gesetzlichen Regeln (Bundesurlaubsgesetz) und betrieblichen Belangen mit    Rücksicht auf den Arbeitnehmer.",
+        "Nein, Urlaubsansprüche und Festlegungen unterliegen gesetzlichen Regeln (Bundesurlaubsgesetz) und betrieblichen Belangen mit Rücksicht auf den Arbeitnehmer.",
         "Ja, wenn Notstand in der Praxis herrscht."
       ],
-      "correctAnswer": "Nein, Urlaubsansprüche und Festlegungen unterliegen gesetzlichen Regeln (Bundesurlaubsgesetz) und betrieblichen Belangen mit    Rücksicht auf den Arbeitnehmer.",
-      "explanationRu": "Односторонний произвол работодателя по отмене отпуска ограничен нормами закона и интересами сотрудника[: 5, 8]."
+      "correctAnswer": "Nein, Urlaubsansprüche und Festlegungen unterliegen gesetzlichen Regeln (Bundesurlaubsgesetz) und betrieblichen Belangen mit Rücksicht auf den Arbeitnehmer.",
+      "explanationRu": "Односторонний произвол работодателя по отмене отпуска ограничен нормами закона и интересами сотрудника."
     }
   ]
 }
