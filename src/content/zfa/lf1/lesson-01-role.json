@@ -11,20 +11,20 @@
     {
       "id": "sec-1",
       "heading": "Das duale System in Deutschland",
-      "explanationRu": "Профессиональное обучение в Германии построено на дуальной системе. Она объединяет два места обучения: стоматологическую клинику (практика) и профессиональную школу Berufsschule (теория). Цель — синхронизировать учебный процесс и реальную работу у кресла[cite: 36].",
-      "explanationDe": "Die Berufsausbildung in Deutschland findet im dualen System statt: an Lernorten wie dem Ausbildungsbetrieb und der Berufsschule, geregelt durch das Berufsbildungsgesetz (BBiG)[cite: 36]."
+      "explanationRu": "Профессиональное обучение в Германии построено на дуальной системе. Она объединяет два места обучения: стоматологическую клинику (практика) и профессиональную школу Berufsschule (теория). Цель — синхронизировать учебный процесс и реальную работу у кресла[: 36].",
+      "explanationDe": "Die Berufsausbildung in Deutschland findet im dualen System statt: an Lernorten wie dem Ausbildungsbetrieb und der Berufsschule, geregelt durch das Berufsbildungsgesetz (BBiG)[: 36]."
     },
     {
       "id": "sec-2",
       "heading": "Arbeitszeit und Jugendarbeitsschutz",
-      "explanationRu": "Для несовершеннолетних (до 18 лет) действует строгий Закон об охране труда молодежи (JArbSchG). Максимальная рабочая неделя составляет 40 часов, а рабочий день в среднем не должен превышать 8 часов[cite: 2].",
-      "explanationDe": "Das Jugendarbeitsschutzgesetz (JArbSchG) schützt junge Menschen unter 18 Jahren. Die 40-Stunden-Woche ist die Obergrenze, der Arbeitstag sollte maximal 8 Stunden dauern[cite: 2]."
+      "explanationRu": "Для несовершеннолетних (до 18 лет) действует строгий Закон об охране труда молодежи (JArbSchG). Максимальная рабочая неделя составляет 40 часов, а рабочий день в среднем не должен превышать 8 часов[: 2].",
+      "explanationDe": "Das Jugendarbeitsschutzgesetz (JArbSchG) schützt junge Menschen unter 18 Jahren. Die 40-Stunden-Woche ist die Obergrenze, der Arbeitstag sollte maximal 8 Stunden dauern[: 2]."
     },
     {
       "id": "sec-3",
       "heading": "Der Fall: Zu viel Stress in Berlin",
-      "explanationRu": "Подруга Гертруда пишет из Берлина: ее коллега попала в больницу, из-за чего Гертруду заставляют работать 55 часов в неделю, выходить по субботам и дают всего 15 минут на обед. По закону это грубейшие нарушения трудовых прав[cite: 8]!",
-      "explanationDe": "Gertrude schreibt: Meine Kollegin ist im Krankenhaus, jetzt arbeiten wir 55 Stunden die Woche, müssen samstags kommen und haben oft nur eine 15-minütige Mittagspause. Ist das arbeitsrechtlich erlaubt[cite: 8]?"
+      "explanationRu": "Подруга Гертруда пишет из Берлина: ее коллега попала в больницу, из-за чего Гертруду заставляют работать 55 часов в неделю, выходить по субботам и дают всего 15 минут на обед. По закону это грубейшие нарушения трудовых прав[: 8]!",
+      "explanationDe": "Gertrude schreibt: Meine Kollegin ist im Krankenhaus, jetzt arbeiten wir 55 Stunden die Woche, müssen samstags kommen und haben oft nur eine 15-minütige Mittagspause. Ist das arbeitsrechtlich erlaubt[: 8]?"
     }
   ],
   "vocabulary": [
@@ -67,7 +67,7 @@
         "Eine Ausbildung, die nur aus Online-Kursen besteht"
       ],
       "correctAnswer": "Das Lernen an zwei Lernorten: Berufsschule und Ausbildungsbetrieb",
-      "explanationRu": "Дуальное обучение означает одновременное прохождение практики в клинике и теории в профессиональной школе (Berufsschule)[cite: 36]."
+      "explanationRu": "Дуальное обучение означает одновременное прохождение практики в клинике и теории в профессиональной школе (Berufsschule)[: 36]."
     },
     {
       "id": "ex-2",
@@ -78,7 +78,7 @@
         "Bis zu 55 Stunden bei Notfällen"
       ],
       "correctAnswer": "Genau 40 Stunden",
-      "explanationRu": "Закон строго ограничивает рабочую неделю для несовершеннолетних рамками в 40 часов[cite: 2]."
+      "explanationRu": "Закон строго ограничивает рабочую неделю для несовершеннолетних рамками в 40 часов[: 2]."
     },
     {
       "id": "ex-3",
@@ -89,7 +89,7 @@
         "Ja, wenn Notstand in der Praxis herrscht."
       ],
       "correctAnswer": "Nein, Urlaubsansprüche und Festlegungen unterliegen gesetzlichen Regeln (Bundesurlaubsgesetz) und betrieblichen Belangen mit Rücksichtบนs Arbeitnehmer.",
-      "explanationRu": "Односторонний произвол работодателя по отмене отпуска ограничен нормами закона и интересами сотрудника[cite: 5, 8]."
+      "explanationRu": "Односторонний произвол работодателя по отмене отпуска ограничен нормами закона и интересами сотрудника[: 5, 8]."
     }
   ]
 }
