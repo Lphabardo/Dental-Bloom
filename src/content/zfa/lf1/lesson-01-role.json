@@ -74,10 +74,10 @@
       "question": "Wie viele Stunden beträgt die wöchentliche Obergrenze für Jugendliche nach dem JArbSchG?",
       "options": [
         "Maximal 35 Stunden",
-        "Genau 40 Stunden",
+        "Maximal 40 Stunden",
         "Bis zu 55 Stunden bei Notfällen"
       ],
-      "correctAnswer": "Genau 40 Stunden",
+      "correctAnswer": "Maximal 40 Stunden",
       "explanationRu": "Закон строго ограничивает рабочую неделю для несовершеннолетних рамками в 40 часов[: 2]."
     },
     {
