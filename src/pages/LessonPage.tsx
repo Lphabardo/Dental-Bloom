@@ -30,26 +30,31 @@ export const LessonPage: React.FC<LessonPageProps> = ({ lessonId, onBack }) => {
     }
   }, []);
 
-  const pickVoice = (lang: string) => {
-  const voices = window.speechSynthesis.getVoices();
-  const code = lang.split('-')[0].toLowerCase();
-  const norm = (l: string) => l.replace('_', '-').toLowerCase();
-  const list = voices.filter((v) => norm(v.lang).startsWith(code));
+  
+    const pickVoice = (lang: string) => {
+    const voices = window.speechSynthesis.getVoices();
+    const code = lang.split('-')[0].toLowerCase();
+    const norm = (l: string) => l.replace('_', '-').toLowerCase();
+    const list = voices.filter((v) => norm(v.lang).startsWith(code));
 
-  const score = (v: SpeechSynthesisVoice) => {
-    const n = v.name.toLowerCase();
-    let s = 0;
-    if (n.includes('premium')) s += 3;
-    if (n.includes('enhanced') || n.includes('улучшен')) s += 3;
-    if (n.includes('natural')) s += 3;
-    if (n.includes('google')) s += 2;
-    if (!v.localService) s += 1;
-    if (norm(v.lang) === lang.toLowerCase()) s += 1;
-    return s;
+    const BAD = ['eddy', 'flo', 'grandma', 'grandpa', 'reed', 'rocko', 'sandy', 'shelley', 'bad news', 'bells', 'boing', 'bubbles', 'cellos', 'good news', 'jester', 'organ', 'superstar', 'trinoids', 'whisper', 'wobble', 'zarvox', 'albert', 'fred', 'junior', 'kathy', 'ralph'];
+    const GOOD = ['anna', 'helena', 'markus', 'petra', 'viktor', 'yannick', 'samantha', 'ava', 'allison', 'susan', 'tom', 'daniel', 'karen', 'moira'];
+
+    const score = (v: SpeechSynthesisVoice) => {
+      const n = v.name.toLowerCase();
+      let s = 0;
+      if (BAD.some((b) => n === b || n.startsWith(b + ' '))) s -= 10;
+      if (GOOD.some((g) => n.startsWith(g))) s += 5;
+      if (n.includes('premium')) s += 4;
+      if (n.includes('enhanced') || n.includes('улучшен')) s += 3;
+      if (n.includes('natural')) s += 3;
+      if (n.includes('google')) s += 2;
+      if (norm(v.lang) === lang.toLowerCase()) s += 1;
+      return s;
+    };
+
+    return list.sort((a, b) => score(b) - score(a))[0];
   };
-
-  return list.sort((a, b) => score(b) - score(a))[0];
-};
 
   const speak = (text: string, lang: 'de-DE' | 'en-US' = 'de-DE') => {
     if (!('speechSynthesis' in window)) {
@@ -66,7 +71,14 @@ export const LessonPage: React.FC<LessonPageProps> = ({ lessonId, onBack }) => {
 if (voice) utterance.voice = voice;
 
     window.speechSynthesis.speak(utterance);
-    alert('Голос: ' + (voice ? voice.name : 'не найден'));
+    alert(
+  'Выбран: ' + (voice ? voice.name : 'нет') +
+  '\nВсе: ' +
+  window.speechSynthesis.getVoices()
+    .filter((v) => v.lang.toLowerCase().startsWith(lang.slice(0, 2)))
+    .map((v) => v.name)
+    .join(', ')
+);
   };
 
   const handleAnswerCheck = (option: string) => {
