@@ -8,12 +8,13 @@ interface HomePageProps {
     moduleTag: string;
     duration: string;
   };
+  reviewCount: number;
   onStartLesson: () => void;
   onStartShort: () => void;
   onOpenSettings: () => void;
 }
 
-export const HomePage: React.FC<HomePageProps> = ({ lesson, onStartLesson, onStartShort, onOpenSettings }) => {
+export const HomePage: React.FC<HomePageProps> = ({ lesson, reviewCount, onStartLesson, onStartShort, onOpenSettings }) => {
   return (
     <div className="space-y-4 pb-24">
       {/* Приветствие */}
@@ -80,9 +81,13 @@ export const HomePage: React.FC<HomePageProps> = ({ lesson, onStartLesson, onSta
       <div className="bg-white p-4 rounded-2xl border border-bloom-border">
         <div className="flex justify-between items-center mb-2">
           <h3 className="text-sm font-semibold text-bloom-text">Quick Review</h3>
-          <span className="text-xs text-bloom-muted">5 слов</span>
+          <span className="text-xs text-bloom-muted">Слов: {reviewCount}</span>
         </div>
-        <p className="text-xs text-bloom-muted">На сегодня запланировано повторение терминов из LF 4.</p>
+        <p className="text-xs text-bloom-muted">
+  {reviewCount > 0
+    ? 'Открой вкладку «Повторение», чтобы повторить слова.'
+    : 'Пройди первый урок, и здесь появятся слова для повторения.'}
+</p>
       </div>
     </div>
   );

@@ -10,3 +10,21 @@ export const getLessonById = (id: string) => {
 };
 
 export const getFirstLesson = () => lesson01;
+
+
+
+
+
+
+export const getReviewWords = (completedIds: string[]) =>
+  ALL_LESSONS
+    .filter((l) => completedIds.includes(l.id))
+    .flatMap((l) =>
+      l.vocabulary.map((v) => ({
+        id: v.id,
+        article: v.article,
+        term: v.term,
+        translationRu: v.translationRu,
+        definitionDe: v.simpleDefinitionDe,
+      }))
+    );

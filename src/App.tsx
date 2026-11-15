@@ -7,7 +7,7 @@ import { ReviewPage } from './pages/ReviewPage';
 import { ProgressPage } from './pages/ProgressPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { LessonPage } from './pages/LessonPage';
-import { getAllLessons } from './features/lessons/lessonService';
+import { getAllLessons, getReviewWords } from './features/lessons/lessonService';
 import { getCompletedLessons } from './features/lessons/lessonProgress';
 
 export function App() {
@@ -73,6 +73,7 @@ export function App() {
               {activeTab === 'home' && (
                 <HomePage 
                 lesson={nextLesson}
+                reviewCount={getReviewWords(completedIds).length}
                 onStartLesson={() => { setStartStep('intro'); setActiveLessonId(nextLesson.id); }}
                 onStartShort={() => { setStartStep('vocabulary'); setActiveLessonId(nextLesson.id); }}
                 onOpenSettings={() => setIsSettingsOpen(true)} 
