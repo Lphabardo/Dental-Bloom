@@ -11,8 +11,8 @@
     {
       "id": "sec-1",
       "heading": "Das duale System in Deutschland",
-      "explanationRu": "Профессиональное обучение в Германии построено на дуальной системе. Она объединяет два места обучения: стоматологическую клинику (практика) и профессиональную школу Berufsschule (теория). Цель — синхронизировать учебный процесс и реальную работу у кресла[: 36].",
-      "explanationDe": "Die Berufsausbildung in Deutschland findet im dualen System statt: an Lernorten wie dem Ausbildungsbetrieb und der Berufsschule, geregelt durch das Berufsbildungsgesetz (BBiG)[: 36]."
+      "explanationRu": "Профессиональное обучение в Германии построено на дуальной системе. Она объединяет два места обучения: стоматологическую клинику (практика) и профессиональную школу Berufsschule (теория). Цель — синхронизировать учебный процесс и реальную работу у кресла.",
+      "explanationDe": "Die Berufsausbildung in Deutschland findet im dualen System statt: an Lernorten wie dem Ausbildungsbetrieb und der Berufsschule, geregelt durch das Berufsbildungsgesetz (BBiG)."
     },
     {
       "id": "sec-2",
@@ -67,7 +67,7 @@
         "Eine Ausbildung, die nur aus Online-Kursen besteht"
       ],
       "correctAnswer": "Das Lernen an zwei Lernorten: Berufsschule und Ausbildungsbetrieb",
-      "explanationRu": "Дуальное обучение означает одновременное прохождение практики в клинике и теории в профессиональной школе (Berufsschule)[: 36]."
+      "explanationRu": "Дуальное обучение означает одновременное прохождение практики в клинике и теории в профессиональной школе (Berufsschule)."
     },
     {
       "id": "ex-2",
@@ -85,10 +85,10 @@
       "question": "Darf der Chef den bereits genehmigten Urlaub einfach so streichen, wie es bei Gertrude der Fall war?",
       "options": [
         "Ja, der Chef hat immer das Recht dazu.",
-        "Nein, Urlaubsansprüche und Festlegungen unterliegen gesetzlichen Regeln (Bundesurlaubsgesetz) und betrieblichen Belangen mit Rücksichtบนs Arbeitnehmer.",
+        "Nein, Urlaubsansprüche und Festlegungen unterliegen gesetzlichen Regeln (Bundesurlaubsgesetz) und betrieblichen Belangen mit    Rücksicht auf den Arbeitnehmer.",
         "Ja, wenn Notstand in der Praxis herrscht."
       ],
-      "correctAnswer": "Nein, Urlaubsansprüche und Festlegungen unterliegen gesetzlichen Regeln (Bundesurlaubsgesetz) und betrieblichen Belangen mit Rücksichtบนs Arbeitnehmer.",
+      "correctAnswer": "Nein, Urlaubsansprüche und Festlegungen unterliegen gesetzlichen Regeln (Bundesurlaubsgesetz) und betrieblichen Belangen mit    Rücksicht auf den Arbeitnehmer.",
       "explanationRu": "Односторонний произвол работодателя по отмене отпуска ограничен нормами закона и интересами сотрудника[: 5, 8]."
     }
   ]
