@@ -28,3 +28,39 @@ export const getReviewWords = (completedIds: string[]) =>
         definitionDe: v.simpleDefinitionDe,
       }))
     );
+
+
+export type ReviewCard = {
+  key: string;
+  lang: 'de' | 'en';
+  article?: string;
+  front: string;
+  speakText: string;
+  translationRu: string;
+  extra: string;
+};
+
+export const getReviewCards = (completedIds: string[]): ReviewCard[] =>
+  ALL_LESSONS
+    .filter((l) => completedIds.includes(l.id))
+    .flatMap((l) =>
+      l.vocabulary.flatMap((v): ReviewCard[] => [
+        {
+          key: `${l.id}:${v.id}:de`,
+          lang: 'de',
+          article: v.article,
+          front: v.term,
+          speakText: `${v.article} ${v.term}`.replace('/', ','),
+          translationRu: v.translationRu,
+          extra: v.simpleDefinitionDe,
+        },
+        {
+          key: `${l.id}:${v.id}:en`,
+          lang: 'en',
+          front: v.enTerm,
+          speakText: v.enAudio,
+          translationRu: v.translationRu,
+          extra: `${v.article} ${v.term}`,
+        },
+      ])
+    );

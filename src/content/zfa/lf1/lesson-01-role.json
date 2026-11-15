@@ -36,7 +36,7 @@
       "term": "Auszubildende",
       "translationRu": "Стажер, ученик (Azubi)",
       "simpleDefinitionDe": "Trainee oder Lernender in einer dualen Ausbildung.",
-      "enTerm": "Trainee / Dental Assistant",
+      "enTerm": "Dental Assistant",
       "enAudio": "Dental Assistant"
     },
     {
@@ -54,7 +54,7 @@
       "term": "Ruhepause",
       "translationRu": "Перерыв для отдыха",
       "simpleDefinitionDe": "Vorgeschriebene Erholungspause während des Arbeitstages.",
-      "enTerm": "Rest break",
+      "enTerm": "Break",
       "enAudio": "Break"
     },
     {
@@ -63,7 +63,7 @@
       "term": "Urlaub",
       "translationRu": "Отпуск",
       "simpleDefinitionDe": "Freie Tage zur Erholung nach dem Bundesurlaubsgesetz.",
-      "enTerm": "Vacation / Leave",
+      "enTerm": "Vacation",
       "enAudio": "Vacation"
     }
   ],
