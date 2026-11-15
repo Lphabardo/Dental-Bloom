@@ -2,6 +2,11 @@ import React from 'react';
 import { ArrowLeft, RefreshCw } from 'lucide-react';
 
 export const SettingsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
+  const openAdmin = () => {
+    window.location.hash = 'admin';
+    window.location.reload();
+  };
+
   return (
     <div className="space-y-4 pb-24">
       <div className="flex items-center space-x-3">
@@ -19,6 +24,15 @@ export const SettingsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
         <button className="w-full py-2 text-left text-sm text-red-500 flex items-center space-x-2">
           <RefreshCw size={16} />
           <span>Сбросить прогресс</span>
+        </button>
+      </div>
+
+      <div className="bg-white p-4 rounded-2xl border border-bloom-border">
+        <button
+          onClick={openAdmin}
+          className="w-full py-2 text-left text-sm text-bloom-text"
+        >
+          🔐 Вход для администратора
         </button>
       </div>
     </div>

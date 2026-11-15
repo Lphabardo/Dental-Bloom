@@ -162,6 +162,11 @@ export const AdminPage: React.FC = () => {
     setPreview(false);
   };
 
+    const backToApp = () => {
+    window.location.hash = '';
+    window.location.reload();
+  };
+
   const wrapper = 'max-w-md mx-auto p-4 min-h-screen bg-[#FFF9F6] text-[#34313A]';
 
   if (checking) return <div className={wrapper}>Загрузка…</div>;
@@ -169,6 +174,9 @@ export const AdminPage: React.FC = () => {
   if (!session) {
     return (
       <div className={wrapper}>
+                <button onClick={backToApp} className="text-[#817782] text-sm font-medium mb-3">
+          ← В приложение
+        </button>
         <h1 className="text-2xl font-bold mb-4">Админ-вход</h1>
         <form
           onSubmit={(e) => {
@@ -212,6 +220,9 @@ export const AdminPage: React.FC = () => {
 
   return (
     <div className={wrapper}>
+            <button onClick={backToApp} className="text-[#817782] text-sm font-medium mb-3">
+        ← В приложение
+      </button>
       <h1 className="text-2xl font-bold mb-1">Админ-кабинет</h1>
       <p className="text-sm text-[#817782] mb-4">Вы вошли: {session.user.email}</p>
 
