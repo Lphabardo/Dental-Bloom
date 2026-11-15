@@ -1,21 +1,34 @@
-// Vite автоматически собирает все .json файлы из папки content и всех вложенных папок
-const lessonModules = import.meta.glob('../../content/**/*.json', { eager: true });
+import lesson01 from '../../content/zfa/lf1/lesson-01-role.json';
+import lesson02 from '../../content/zfa/lf1/lesson-02-arbeitszeit.json';
 
-export const ALL_LESSONS = Object.values(lessonModules)
-  .map((mod: any) => mod.default || mod)
-  .sort((a, b) => a.id.localeCompare(b.id));
+export const ALL_LESSONS = [lesson01, lesson02];
 
 export const getAllLessons = () => ALL_LESSONS;
 
 export const getLessonById = (id: string) => {
-  const found = ALL_LESSONS.find((l) => l.id === id);
-  if (!found) {
-    throw new Error(`Урок с ID "${id}" не найден`);
-  }
-  return found;
+  return ALL_LESSONS.find((l) => l.id === id) || lesson01;
 };
 
-export const getFirstLesson = () => ALL_LESSONS[0];
+export const getFirstLesson = () => lesson01;
+
+
+
+
+
+
+export const getReviewWords = (completedIds: string[]) =>
+  ALL_LESSONS
+    .filter((l) => completedIds.includes(l.id))
+    .flatMap((l) =>
+      l.vocabulary.map((v) => ({
+        id: v.id,
+        article: v.article,
+        term: v.term,
+        translationRu: v.translationRu,
+        definitionDe: v.simpleDefinitionDe,
+      }))
+    );
+
 
 export type ReviewCard = {
   key: string;
@@ -31,37 +44,23 @@ export const getReviewCards = (completedIds: string[]): ReviewCard[] =>
   ALL_LESSONS
     .filter((l) => completedIds.includes(l.id))
     .flatMap((l) =>
-      (l.vocabulary || []).flatMap((v: any): ReviewCard[] => {
-        const cards: ReviewCard[] = [];
-        const isEnglishOnly = l.id.startsWith('eng-');
-
-        // Немецкая карточка (создаем, если это не чисто английский урок)
-        if (!isEnglishOnly && v.term) {
-          const fullDe = v.article ? `${v.article} ${v.term}` : v.term;
-          cards.push({
-            key: `${l.id}:${v.id}:de`,
-            lang: 'de',
-            article: v.article,
-            front: v.term,
-            speakText: fullDe.replace('/', ','),
-            translationRu: v.translationRu,
-            extra: v.simpleDefinitionDe || '',
-          });
-        }
-
-        // Английская карточка (создаем, если есть enTerm)
-        if (v.enTerm) {
-          const fullDeExtra = v.article ? `${v.article} ${v.term}` : v.term;
-          cards.push({
-            key: `${l.id}:${v.id}:en`,
-            lang: 'en',
-            front: v.enTerm,
-            speakText: v.enAudio || v.enTerm,
-            translationRu: v.translationRu,
-            extra: isEnglishOnly ? (v.simpleDefinitionDe || '') : fullDeExtra,
-          });
-        }
-
-        return cards;
-      })
+      l.vocabulary.flatMap((v): ReviewCard[] => [
+        {
+          key: `${l.id}:${v.id}:de`,
+          lang: 'de',
+          article: v.article,
+          front: v.term,
+          speakText: `${v.article} ${v.term}`.replace('/', ','),
+          translationRu: v.translationRu,
+          extra: v.simpleDefinitionDe,
+        },
+        {
+          key: `${l.id}:${v.id}:en`,
+          lang: 'en',
+          front: v.enTerm,
+          speakText: v.enAudio,
+          translationRu: v.translationRu,
+          extra: `${v.article} ${v.term}`,
+        },
+      ])
     );
