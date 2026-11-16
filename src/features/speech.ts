@@ -6,7 +6,7 @@ if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
 }
 
 const BAD = ['eddy', 'flo', 'grandma', 'grandpa', 'reed', 'rocko', 'sandy', 'shelley', 'bad news', 'bells', 'boing', 'bubbles', 'cellos', 'good news', 'jester', 'organ', 'superstar', 'trinoids', 'whisper', 'wobble', 'zarvox', 'albert', 'fred', 'junior', 'kathy', 'ralph'];
-const GOOD = ['anna', 'helena', 'markus', 'petra', 'viktor', 'yannick', 'samantha', 'ava', 'allison', 'susan', 'tom', 'daniel', 'karen', 'moira'];
+const GOOD = ['anna', 'helena', 'markus', 'petra', 'viktor', 'yannick', 'samantha', 'ava', 'allison', 'susan', 'tom', 'daniel', 'karen', 'moira', 'milena', 'yuri', 'katya', 'irina', 'pavel'];
 
 const pickVoice = (lang: string) => {
   const voices = window.speechSynthesis.getVoices();
@@ -30,7 +30,7 @@ const pickVoice = (lang: string) => {
   return list.sort((a, b) => score(b) - score(a))[0];
 };
 
-export const speak = (text: string, lang: 'de-DE' | 'en-US' = 'de-DE') => {
+export const speak = (text: string, lang: 'de-DE' | 'en-US' | 'ru-RU' = 'de-DE') => {
   if (!('speechSynthesis' in window)) return;
 
   const synth = window.speechSynthesis;

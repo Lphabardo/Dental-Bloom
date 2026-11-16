@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { getLessonById } from '../features/lessons/lessonService';
 import { markLessonCompleted, recordActivity } from '../features/lessons/lessonProgress';
+import { speak } from '../features/speech';
 
 interface LessonPageProps {
-    startStep?: 'intro' | 'vocabulary';
+  startStep?: 'intro' | 'vocabulary';
   lessonId: string;
   onBack: () => void;
 }
 
 export const LessonPage: React.FC<LessonPageProps> = ({ lessonId, onBack, startStep = 'intro' }) => {
   const lesson = getLessonById(lessonId);
-    const [step, setStep] = useState<'intro' | 'vocabulary' | 'exercises' | 'done'>(startStep);
+  const [step, setStep] = useState<'intro' | 'vocabulary' | 'exercises' | 'done'>(startStep);
   const [currentExIndex, setCurrentExIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -21,68 +22,6 @@ export const LessonPage: React.FC<LessonPageProps> = ({ lessonId, onBack, startS
     setSelectedAnswer(null);
     setIsCorrect(null);
   }, [lessonId, startStep]);
-
-  useEffect(() => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.getVoices();
-      window.speechSynthesis.onvoiceschanged = () => {
-        window.speechSynthesis.getVoices();
-      };
-    }
-  }, []);
-
-  
-    const pickVoice = (lang: string) => {
-    const voices = window.speechSynthesis.getVoices();
-    const code = lang.split('-')[0].toLowerCase();
-    const norm = (l: string) => l.replace('_', '-').toLowerCase();
-    const list = voices.filter((v) => norm(v.lang).startsWith(code));
-
-    const BAD = ['eddy', 'flo', 'grandma', 'grandpa', 'reed', 'rocko', 'sandy', 'shelley', 'bad news', 'bells', 'boing', 'bubbles', 'cellos', 'good news', 'jester', 'organ', 'superstar', 'trinoids', 'whisper', 'wobble', 'zarvox', 'albert', 'fred', 'junior', 'kathy', 'ralph'];
-    const GOOD = ['anna', 'helena', 'markus', 'petra', 'viktor', 'yannick', 'samantha', 'ava', 'allison', 'susan', 'tom', 'daniel', 'karen', 'moira'];
-
-    const score = (v: SpeechSynthesisVoice) => {
-      const n = v.name.toLowerCase();
-      let s = 0;
-      if (BAD.some((b) => n === b || n.startsWith(b + ' '))) s -= 10;
-      if (GOOD.some((g) => n.startsWith(g))) s += 5;
-      if (n.includes('premium')) s += 4;
-      if (n.includes('enhanced') || n.includes('улучшен')) s += 3;
-      if (n.includes('natural')) s += 3;
-      if (n.includes('google')) s += 2;
-      if (norm(v.lang) === lang.toLowerCase()) s += 1;
-      return s;
-    };
-
-    return list.sort((a, b) => score(b) - score(a))[0];
-  };
-
-    const speak = (text: string, lang: 'de-DE' | 'en-US' = 'de-DE') => {
-    if (!('speechSynthesis' in window)) {
-      alert('Твой браузер не поддерживает озвучку текста.');
-      return;
-    }
-
-    const synth = window.speechSynthesis;
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = lang;
-    utterance.rate = 0.95;
-
-    const voice = pickVoice(lang);
-    if (voice) utterance.voice = voice;
-
-    const run = () => {
-      synth.resume();
-      synth.speak(utterance);
-    };
-
-    if (synth.speaking || synth.pending) {
-      synth.cancel();
-      setTimeout(run, 100);
-    } else {
-      run();
-    }
-  };
 
   const handleAnswerCheck = (option: string) => {
     const currentQuestion = lesson.exercises[currentExIndex];
@@ -96,7 +35,7 @@ export const LessonPage: React.FC<LessonPageProps> = ({ lessonId, onBack, startS
     if (currentExIndex < lesson.exercises.length - 1) {
       setCurrentExIndex(currentExIndex + 1);
     } else {
-            recordActivity();
+      recordActivity();
       markLessonCompleted(lesson.id);
       setStep('done');
     }
@@ -132,15 +71,24 @@ export const LessonPage: React.FC<LessonPageProps> = ({ lessonId, onBack, startS
 
           {lesson.sections.map((sec) => (
             <div key={sec.id} className="bg-white p-5 rounded-2xl shadow-sm border border-[#F0E4E9] space-y-3">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-2">
                 <h3 className="font-semibold text-[#34313A] text-lg">{sec.heading}</h3>
-                <button
-                  onClick={() => speak(sec.explanationDe, 'de-DE')}
-                  className="text-sm bg-[#FBEAF1] text-[#B95783] p-2 rounded-xl hover:bg-[#F0E4E9] transition-all"
-                  title="Прослушать на немецком"
-                >
-                  🔊
-                </button>
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <button
+                    onClick={() => speak(sec.explanationRu, 'ru-RU')}
+                    className="text-xs bg-[#FFF9F6] border border-[#F0E4E9] text-[#34313A] px-2.5 py-1.5 rounded-xl hover:bg-[#FBEAF1] transition-all font-medium"
+                    title="Прослушать на русском"
+                  >
+                    🔊 RU
+                  </button>
+                  <button
+                    onClick={() => speak(sec.explanationDe, 'de-DE')}
+                    className="text-xs bg-[#FBEAF1] text-[#B95783] px-2.5 py-1.5 rounded-xl hover:bg-[#F0E4E9] transition-all font-medium"
+                    title="Прослушать на немецком"
+                  >
+                    🔊 DE
+                  </button>
+                </div>
               </div>
               <p className="text-sm text-[#34313A] leading-relaxed">🇷🇺 {sec.explanationRu}</p>
               <p className="text-sm text-[#B95783] italic bg-[#FBEAF1] p-3 rounded-xl">🇩🇪 {sec.explanationDe}</p>
@@ -161,14 +109,8 @@ export const LessonPage: React.FC<LessonPageProps> = ({ lessonId, onBack, startS
           <h2 className="text-lg font-semibold text-[#34313A]">Важные слова (Wortschatz & English)</h2>
           
           {lesson.vocabulary.map((vocab: any) => {
-            let enTerm = vocab.enTerm || 'Dental Term';
-            let enAudio = vocab.enAudio || enTerm;
-            if (!vocab.enTerm) {
-              if (vocab.term === 'Arbeitszeit') { enTerm = 'Working hours'; enAudio = 'Working hours'; }
-              else if (vocab.term === 'Ruhepause') { enTerm = 'Rest break'; enAudio = 'Break'; }
-              else if (vocab.term === 'Urlaub') { enTerm = 'Vacation / Leave'; enAudio = 'Vacation'; }
-              else if (vocab.term === 'Auszubildende') { enTerm = 'Trainee / Dental Assistant'; enAudio = 'Dental Assistant'; }
-            }
+            const enTerm = vocab.enTerm || 'Dental Term';
+            const enAudio = vocab.enAudio || enTerm;
 
             return (
               <div key={vocab.id} className="bg-white p-4 rounded-2xl shadow-sm border border-[#F0E4E9] space-y-2">
@@ -185,7 +127,17 @@ export const LessonPage: React.FC<LessonPageProps> = ({ lessonId, onBack, startS
                   </button>
                 </div>
 
-                <p className="text-sm font-medium text-[#B95783]">{vocab.translationRu}</p>
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-medium text-[#B95783]">{vocab.translationRu}</p>
+                  <button
+                    onClick={() => speak(vocab.translationRu, 'ru-RU')}
+                    className="text-xs text-[#817782] hover:text-[#34313A] px-2 py-0.5 rounded-lg"
+                    title="Озвучить перевод"
+                  >
+                    🔊 RU
+                  </button>
+                </div>
+                
                 <p className="text-xs text-[#817782] italic">🇩🇪 {vocab.simpleDefinitionDe}</p>
 
                 <div className="mt-2 pt-2 border-t border-[#F0E4E9] flex items-center justify-between bg-[#FFF9F6] p-2.5 rounded-xl">
@@ -252,7 +204,15 @@ export const LessonPage: React.FC<LessonPageProps> = ({ lessonId, onBack, startS
 
           {selectedAnswer !== null && (
             <div className={`p-4 rounded-xl text-sm ${isCorrect ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
-              <p className="font-semibold mb-1">{isCorrect ? '✨ Правильно!' : '❌ Не совсем верно.'}</p>
+              <div className="flex items-center justify-between mb-1">
+                <p className="font-semibold">{isCorrect ? '✨ Правильно!' : '❌ Не совсем верно.'}</p>
+                <button
+                  onClick={() => speak(lesson.exercises[currentExIndex].explanationRu, 'ru-RU')}
+                  className="text-xs opacity-75 hover:opacity-100 px-2 py-0.5 rounded bg-white/50"
+                >
+                  🔊 RU
+                </button>
+              </div>
               <p>{lesson.exercises[currentExIndex].explanationRu}</p>
             </div>
           )}
